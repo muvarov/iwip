@@ -59,10 +59,11 @@
 #define LWIP_RAND() ((u32_t)rand())
 
 /* different handling for unit test, normally not needed */
-#ifdef LWIP_NOASSERT_ON_ERROR
+/*#ifdef LWIP_NOASSERT_ON_ERROR*/
 #define LWIP_ERROR(message, expression, handler) do { if (!(expression)) { \
+  printf(message); \
   handler;}} while(0)
-#endif
+/*#endif*/
 
 #if defined(LWIP_UNIX_ANDROID) && defined(FD_SET)
 typedef __kernel_fd_set fd_set;

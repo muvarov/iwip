@@ -48,8 +48,8 @@
  * Include user defined options first. Anything not defined in these files
  * will be set to standard values. Override anything you don't like!
  */
-#include "lwipopts.h"
-#include "lwip/debug.h"
+#include <lwipopts.h>
+#include <lwip/debug.h>
 
 /**
  * @defgroup lwip_opts Options (lwipopts.h)
@@ -1129,7 +1129,7 @@
  * transport.
  */
 #if !defined LWIP_DNS || defined __DOXYGEN__
-#define LWIP_DNS                        0
+#define LWIP_DNS                        1
 #endif
 
 /** DNS maximum number of entries to maintain locally. */

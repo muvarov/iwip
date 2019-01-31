@@ -754,7 +754,6 @@ lwip_bind(int s, const struct sockaddr *name, socklen_t namelen)
 #endif /* LWIP_IPV4 && LWIP_IPV6 */
 
   err = netconn_bind(sock->conn, &local_addr, local_port);
-
   if (err != ERR_OK) {
     LWIP_DEBUGF(SOCKETS_DEBUG, ("lwip_bind(%d) failed, err=%d\n", s, err));
     sock_set_errno(sock, err_to_errno(err));

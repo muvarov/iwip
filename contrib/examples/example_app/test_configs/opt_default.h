@@ -183,7 +183,7 @@
 #define LWIP_SOCKET_SELECT              1
 #define LWIP_SOCKET_POLL                1
 #define LWIP_STATS                      1
-#define LWIP_STATS_DISPLAY              0
+#define LWIP_STATS_DISPLAY              1
 #define LINK_STATS                      1
 #define ETHARP_STATS                    (LWIP_ARP)
 #define IP_STATS                        1
