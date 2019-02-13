@@ -722,6 +722,8 @@ sys_arch_unprotect(sys_prot_t pval)
         }
     }
 }
+#else
+#error "Using lwip in threads requires locks!"
 #endif /* SYS_LIGHTWEIGHT_PROT */
 
 /* get keyboard state to terminate the debug app by using select */

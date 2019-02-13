@@ -56,7 +56,7 @@
  * critical regions during buffer allocation, deallocation and memory
  * allocation and deallocation.
  */
-#define SYS_LIGHTWEIGHT_PROT            0
+#define SYS_LIGHTWEIGHT_PROT           1
 
 /**
  * NO_SYS==1: Provides VERY minimal functionality. Otherwise,
