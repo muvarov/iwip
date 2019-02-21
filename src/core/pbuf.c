@@ -296,6 +296,9 @@ pbuf_alloc(pbuf_layer layer, u16_t length, pbuf_type type)
       return NULL;
   }
   LWIP_DEBUGF(PBUF_DEBUG | LWIP_DBG_TRACE, ("pbuf_alloc(length=%"U16_F") == %p\n", length, (void *)p));
+#if LWIP_PRINT_TS == 1
+  p->ts_alloc = pbuf_ts();
+#endif
   return p;
 }
 
@@ -735,6 +738,7 @@ pbuf_free(struct pbuf *p)
                 ("pbuf_free(p == NULL) was called.\n"));
     return 0;
   }
+
   LWIP_DEBUGF(PBUF_DEBUG | LWIP_DBG_TRACE, ("pbuf_free(%p)\n", (void *)p));
 
   PERF_START;
@@ -745,6 +749,14 @@ pbuf_free(struct pbuf *p)
   while (p != NULL) {
     LWIP_PBUF_REF_T ref;
     SYS_ARCH_DECL_PROTECT(old_level);
+
+#if LWIP_PRINT_TS == 1
+    p->ts_free = pbuf_ts();
+    printf("alloc ts: %" PRIu64 " free ts: %" PRIu64 " diff %" PRIu64 "\n",
+	   p->ts_alloc, p->ts_free,
+	   p->ts_free - p->ts_alloc);
+#endif
+
     /* Since decrementing ref cannot be guaranteed to be a single machine operation
      * we must protect it. We put the new ref into a local variable to prevent
      * further protection. */

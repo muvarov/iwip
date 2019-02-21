@@ -182,6 +182,11 @@ typedef enum {
 /** indicates this pbuf includes a TCP FIN flag */
 #define PBUF_FLAG_TCP_FIN   0x20U
 
+static inline u64_t pbuf_ts(void)
+{
+	return __builtin_ia32_rdtsc();
+}
+
 /** Main packet buffer struct */
 struct pbuf {
   /** next pbuf in singly linked pbuf chain */
@@ -209,6 +214,9 @@ struct pbuf {
 
   /** misc flags */
   u8_t flags;
+
+  u64_t ts_alloc; /* timestemp or input to lwip stack */
+  u64_t ts_free; /* timestemp on free() buffer which is actually goes right after recv() */
 
   /**
    * the reference count always equals the number of pointers
